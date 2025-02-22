@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <map>
 
 template <typename T>
 class bisection_method{
@@ -13,7 +14,7 @@ class bisection_method{
         T (*funcPtr)(T);
 
         long double returnRoot();
-        std::string returnSequence();
+        void returnSequence(std::map<int, std::string> sequenceResults);
 
     public:
         bisection_method(long double x1, long double x2, long double mid, T error_correction, T (*funcPtr)(T)) :
