@@ -4,25 +4,24 @@
 #include <iostream>
 #include <string>
 #include <map>
+#include <cmath>
+#include <stdexcept>
 
 template <typename T>
-class bisection_method{
-    private:
-        long double x1, x2, mid;
-        long double error_correction;
+class bisection_method {
+private:
+    long double x1, x2;
+    long double error_correction;
+    long double (*funcPtr)(long double);
 
-        T (*funcPtr)(T);
+    long double returnRoot();
+    void printSequence(const std::map<int, std::string>& sequenceResults);
 
-        long double returnRoot();
-        void returnSequence(std::map<int, std::string> sequenceResults);
+public:
+    bisection_method(long double x1, long double x2, long double error_correction, long double (*funcPtr)(long double))
+        : x1(x1), x2(x2), error_correction(error_correction), funcPtr(funcPtr) {}
 
-    public:
-        bisection_method(long double x1, long double x2, long double mid, T error_correction, T (*funcPtr)(T)) :
-        x1(x1), x2(x2), mid(mid), error_correction(error_correction), funcPtr(funcPtr)
-        {}
-
-        //The value of <T> depends on whether the user wishes to view the sequence or just the root.
-        T printResult();
+    void printResult();
 };
 
 #endif // BISECTION_METHOD_H
